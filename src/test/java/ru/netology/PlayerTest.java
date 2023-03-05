@@ -35,6 +35,7 @@ public class PlayerTest {
         Player player = new Player("Petya");
         player.installGame(game1);
         int actual = player.play(game1, 10);
+        player.installGame(game1);
         int expected = 0;
         Assertions.assertEquals(expected, actual);
     }
