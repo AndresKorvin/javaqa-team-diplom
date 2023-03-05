@@ -34,8 +34,9 @@ public class PlayerTest {
     public void shouldNotReinstallGame(){ //переустанавливает имеющуюся игру, а не должен
         Player player = new Player("Petya");
         player.installGame(game1);
-        int actual = player.play(game1, 10);
+        player.play(game1, 10);
         player.installGame(game1);
+        int actual = player.sumGenre(game1.getGenre());
         int expected = 0;
         Assertions.assertEquals(expected, actual);
     }
