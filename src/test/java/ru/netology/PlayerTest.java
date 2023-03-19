@@ -37,7 +37,7 @@ public class PlayerTest {
         player.play(game1, 10);
         player.installGame(game1);
         int actual = player.sumGenre(game1.getGenre());
-        int expected = 0;
+        int expected = 10;
         Assertions.assertEquals(expected, actual);
     }
 
@@ -58,8 +58,10 @@ public class PlayerTest {
     public void shouldSumGenreIfSomeGame() { // метод play все еще не перезаписывает время и сумма не работает
         Player player = new Player("Petya");
         player.installGame(game1);
+        player.installGame(game2);
         player.installGame(game3);
         player.play(game1, 3);
+        player.play(game2, 7);
         player.play(game3, 5);
 
         int expected = 8;
