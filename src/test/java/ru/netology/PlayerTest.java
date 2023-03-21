@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
-
 public class PlayerTest {
     GameStore store = new GameStore();
     Game game1 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
@@ -14,15 +13,16 @@ public class PlayerTest {
     Game game3 = store.publishGame("Паззл", "Аркады");
 
     @Test
-    public void shouldPlayerPlayGame(){ //не перезаписывает время игры
+    public void shouldPlayerPlayGame() {
         Player player = new Player("Petya");
         player.installGame(game1);
         int actual = player.play(game1, 10);
         int expected = 10;
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
-    public void shouldPlayNotInstallGame() { //не выкидывает RuntimeException
+    public void shouldPlayNotInstallGame() {
         Player player = new Player("Petya");
         player.installGame(game1);
         Assertions.assertThrows(RuntimeException.class, () -> {
@@ -31,7 +31,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void shouldNotReinstallGame(){ //переустанавливает имеющуюся игру, а не должен
+    public void shouldNotReinstallGame() {
         Player player = new Player("Petya");
         player.installGame(game1);
         player.play(game1, 10);
@@ -42,9 +42,8 @@ public class PlayerTest {
     }
 
 
-
     @Test
-    public void shouldSumGenreIfOneGame() { // метод play все еще не перезаписывает время и сумма не работает
+    public void shouldSumGenreIfOneGame() {
         Player player = new Player("Petya");
         player.installGame(game1);
         player.play(game1, 3);
@@ -55,7 +54,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void shouldSumGenreIfSomeGame() { // метод play все еще не перезаписывает время и сумма не работает
+    public void shouldSumGenreIfSomeGame() {
         Player player = new Player("Petya");
         player.installGame(game1);
         player.installGame(game2);
@@ -79,8 +78,9 @@ public class PlayerTest {
         int actual = player.sumGenre("РПГ");
         assertEquals(expected, actual);
     }
+
     @Test
-    public void shouldMostPlayerByGenreExist() { //возвращает null вместо game3
+    public void shouldMostPlayerByGenreExist() {
         Player player = new Player("Petya");
         player.installGame(game1);
         player.installGame(game3);
@@ -101,5 +101,4 @@ public class PlayerTest {
         assertEquals(null, player.mostPlayerByGenre("РПГ"));
     }
 
-    // другие ваши тесты
 }
