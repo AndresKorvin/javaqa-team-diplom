@@ -83,11 +83,16 @@ public class PlayerTest {
     public void shouldMostPlayerByGenreExist() {
         Player player = new Player("Petya");
         player.installGame(game1);
+        player.installGame(game2);
         player.installGame(game3);
-        player.play(game1, 3);
-        player.play(game3, 5);
+        player.play(game1, 10);
+        player.play(game2, 7);
+        player.play(game3, 2);
 
-        assertEquals(game3, player.mostPlayerByGenre("Аркады"));
+        Game actual = player.mostPlayerByGenre("Аркады");
+        Game expected = game1;
+
+        assertEquals(expected, actual);
     }
 
     @Test
